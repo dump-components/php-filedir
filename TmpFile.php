@@ -2,7 +2,10 @@
 
 namespace Dump\Filedir;
 
-
+/**
+ * PHP TmpFile
+ * Generate and manipulate a temporary file, its auto deletion only happens at the end of the request
+ */
 class TmpFile
 {
     private static array $filesToDelete = [];
