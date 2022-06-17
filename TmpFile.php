@@ -65,16 +65,21 @@ class TmpFile
 
     private function newTemporaryPath(): string
     {
-        return sprintf('/tmp/%s', $this->randUuid());
+        return $this->getTmpDir() . $this->randName();
     }
 
-    private function randUuid(): string
+    private function randName(): string
     {
-        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex(random_bytes(16)), 4));
+        return bin2hex(random_bytes(16));
     }
 
     private function createEmptyFile(): void
     {
-        fclose(fopen($this->path, 'a+'));
+        fclose(fopen($this->path, 'w+'));
+    }
+
+    private function getTmpDir(): string
+    {
+        return sys_get_temp_dir() . DIRECTORY_SEPARATOR;
     }
 }
