@@ -53,7 +53,7 @@ class TmpFile
         fwrite($this->getHandler(), $data);
     }
 
-    public function remove(): void
+    public function delete(): void
     {
         $this->__destruct();
     }
