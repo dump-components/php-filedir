@@ -48,9 +48,10 @@ class TmpFile
         return file_get_contents($this->path);
     }
 
-    public function write(string $data): void
+    public function write(string $data): TmpFile
     {
         fwrite($this->getHandler(), $data);
+		return $this;
     }
 
     public function delete(): void
@@ -58,9 +59,10 @@ class TmpFile
         $this->__destruct();
     }
 
-    private function closeHandler(): void
+    private function closeHandler(): TmpFile
     {
         fclose($this->getHandler());
+		return $this;
     }
 
     private function newTemporaryPath(): string
